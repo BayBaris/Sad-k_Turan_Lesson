@@ -4,6 +4,7 @@ const message = document.getElementById("message-success");
 const wrongLettersElement = document.getElementById("wrong-letters");
 const items = document.querySelectorAll(".item");
 const messageElement = document.getElementById("message");
+const againButton = document.getElementById("play-again");
 
 function getRandomWord() {
   const words = ["java", "javascript", "python"];
@@ -13,7 +14,7 @@ function getRandomWord() {
 
 const correctLetters = [];
 const wrongLetters = [];
-const selectedWord = getRandomWord();
+let selectedWord = getRandomWord();
 
 function displayWord() {
   wordElement.innerHTML = `
@@ -40,6 +41,7 @@ function displayWord() {
   const output = wordElement.innerText.replace(/\n/g, "");
   if (output === selectedWord) {
     popup.style.display = "flex";
+    popup.children[0].style.backgroundColor = "green";
     message.innerText = "Congratulations! You Made It.";
   }
 }
@@ -62,6 +64,7 @@ function updateWrongLetters() {
 
   if (wrongLetters.length === items.length) {
     popup.style.display = "flex";
+    popup.children[0].style.backgroundColor = "red";
     message.innerText = ":(((( You Failed:";
   }
 }
@@ -76,9 +79,9 @@ function displayMessage(letter) {
     messageElement.classList.remove("show");
   }, 2000);
 }
-
+//#region Eventler
 window.addEventListener("keydown", function (e) {
-  if (e.keyCode >= 65 && e.keyCode <= 90) {
+  if (e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode == '222') {
     const letter = e.key;
     // findLetter(selectedWord, letter);
     if (selectedWord.includes(letter)) {
@@ -89,7 +92,7 @@ window.addEventListener("keydown", function (e) {
         displayMessage(letter);
         // console.log(`You already entered ${letter} letter`);
       }
-    //   console.log(correctLetters);
+      //   console.log(correctLetters);
     } else {
       if (!wrongLetters.includes(letter)) {
         wrongLetters.push(letter);
@@ -97,11 +100,22 @@ window.addEventListener("keydown", function (e) {
       } else {
         displayMessage(letter);
       }
-      console.log(wrongLetters);
+    //   console.log(wrongLetters);
     }
   }
 });
 
+againButton.addEventListener("click", function (e) {
+  correctLetters.splice(0);
+  wrongLetters.splice(0);
+
+  selectedWord = getRandomWord();
+  displayWord();
+  updateWrongLetters();
+
+  popup.style.display = 'none';
+});
+//#endregion
 displayWord();
 
 // My Method....
