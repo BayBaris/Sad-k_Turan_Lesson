@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class= "card-header">
+        <h3 class = "card-title card-holder" id="title"> Todo App</h3>
+    </div>
+
+    <ul id="task-list">
+        <li class= "task"> Görev 1 </li>
+        <li class= "task"> Görev 2 </li>
+        <li class= "task"> Görev 3 </li>
+    </ul>
+
+    <ul id="task-list-two">
+        <li class= "task"> Görev 1 </li>
+        <li class= "task"> Görev 2 </li>
+        <li class= "task"> Görev 3 </li>
+    </ul>
+    <script>
+        let result;
+        result = document.getElementsByClassName("task")[0];
+        console.log(result);
+        
+        // ul = document.getElementById("task-list");
+        // taskList = ul.getElementsByClassName("task");
+
+        taskList = document.querySelectorAll("#task-list li"); // task-list id'sine sahip li elemanlarının hepsini getirir...
+        console.log(taskList);
+        for(let task of taskList){
+            task.style.color = "red";
+            task.style.fontSize = "30px";
+        }
+        
+    </script>
+</body>
+</html>

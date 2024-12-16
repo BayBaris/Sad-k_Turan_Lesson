@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class= "card-header">
+        <h3 class = "card-title card-holder" id="title"> Todo App</h3>
+    </div>
+
+    <ul id="task-list">
+        <li>
+            Görev 1
+        </li>
+        <li>
+            Görev 2
+        </li>
+        <li>
+            Görev 3
+        </li>
+    </ul>
+    <script>
+        let result;
+        result = document.getElementById("title");
+        result = document.getElementById("title").id;
+        result = document.getElementById("title").className; // class içindeki değeri verir.
+        result = document.getElementById("title").classList; // class içindeki değerleri dict olarak döndürür.
+
+        document.getElementById("title").style.fontSize = "25px";
+        document.getElementById("title").style.color = "green";
+        // document.getElementById("title").style.display = "none";
+
+        document.getElementById("title").innerText = "Yapılacaklar"; // İçeriği değiştirmemize yarar.
+        document.getElementById("title").innerHTML = "<p>Yapılacaklar</p>"; // İçeriği etiketler vererek değiştirmemizi sağlar.
+        
+        /* #<id_name> => id bilgisine erişmek için
+           .<class_name> => class bilgisine erişmek için 
+           <element_name> => elemenet bilgisine erişmek için
+           !!! Bulduğu ilk değeri getirir !!!
+        */ 
+        result = document.querySelector("#title");
+        result = document.querySelector(".card-header");
+        result = document.querySelector("div");
+
+        result = document.querySelector("li");
+        result = document.querySelector("li:first-child");
+        result = document.querySelector("li:last-child");
+        result = document.querySelector("li:nth-child(2)"); 
+
+        console.log(result);
+    </script>
+</body>
+</html>

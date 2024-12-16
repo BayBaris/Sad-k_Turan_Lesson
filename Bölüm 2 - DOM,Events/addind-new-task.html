@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">Todo App</div>
+          <div class="card-body">
+            <form>
+              <div class="input-group">
+                <input type="text" id="txtTaskName" class="form-control">
+                <button type="submit" class="btn btn-primary" id="btnAddNewTask">
+                  Ekle
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header">
+              <button type="submit" id="btnClearTask" class="btn btn-danger btn-sm float-end">
+                Temizle
+              </button>
+            </div>
+            <ul id="task-list" class="list-group list-group-flush">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-header">
+    <h3 class="card-title card-holder" id="title">Todo App</h3>
+  </div>
+
+  <script>
+    let result;
+    let ul = document.getElementById("task-list");
+    let btnAdd = document.querySelector("#btnAddNewTask");
+
+    let taskList = [
+      { "id": 1, "taskName": "Task 1" },
+      { "id": 2, "taskName": "Task 2" },
+      { "id": 3, "taskName": "Task 3" },
+      { "id": 4, "taskName": "Task 4" }
+    ];
+
+   
+    function displayTasks() {
+      ul.innerHTML = "";
+
+      for (let task of taskList) {
+        let li = `
+          <li class="task list-group-item">
+                    <div class="form-check">
+                      <input type="checkbox" id=${task.id} class="form-check-input" />
+                      <label for=${task.id} class="form-check-label">${task.taskName}</label>
+                    </div>
+                  </li>
+        `;
+        ul.insertAdjacentHTML("beforeend", li);
+      }
+    }
+
+    displayTasks();
+    function newTask(event) {
+      let taskInput = document.querySelector("#txtTaskName");
+      if (taskInput.value == "") {
+        alert("Enter at least one task!");
+      }
+      else {
+        taskList.push({ "id": taskList.length + 1, "taskName": taskInput.value });
+        displayTasks();
+        taskInput.value = "";
+      }
+
+      event.preventDefault();
+    }
+    function clickEnter() {
+      if (event.key == "Enter") {
+        document.getElementById("btnAddNewTask").click();
+        console.log("Enter Clicked.")
+      }
+    }
+
+    btnAdd.addEventListener("click", newTask); //2. parametre olarak fonksiyonun referansını vermemiz gerekiyor.
+    btnAdd.addEventListener("keypress", clickEnter);
+    
+
+  </script>
+</body>
+
+</html>

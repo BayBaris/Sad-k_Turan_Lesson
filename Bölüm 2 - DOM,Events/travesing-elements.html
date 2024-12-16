@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">Todo App</div>
+            <div class="card mt-3">
+              <ul id="task-list" class="list-group list-group-flush">
+                <li class="task list-group-item">
+                  <div class="form-check">
+                    <input type="checkbox" id="1" class="form-check-input" />
+                    <label for="" class="form-check-label">Görev 1</label>
+                  </div>
+                </li>
+                <li class="task list-group-item">
+                  <div class="form-check">
+                    <input type="checkbox" id="2" class="form-check-input" />
+                    <label for="" class="form-check-label">Görev 2</label>
+                  </div>
+                </li>
+                <li class="task list-group-item">
+                  <div class="form-check">
+                    <input type="checkbox" id="3" class="form-check-input" />
+                    <label for="" class="form-check-label">Görev 3</label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-header">
+      <h3 class="card-title card-holder" id="title">Todo App</h3>
+    </div>
+
+    <script>
+      let result;
+
+      let ul = document.getElementById("task-list");
+      //     // children, firstChild, lastChild, firstElementChild, lastElementChild
+      //     // elementin içerisindeki alt kısımlara erişmek için kullanılır.
+      result = ul.children;
+      ul.children[0].children[0].children[0].checked = true;
+      ul.children[0].nextElementSibling.children[0].children[0].checked = true;
+      console.log(result);
+      //     result = ul.firstElementChild;
+      //     result = ul.lastElementChild;
+
+      //     // parentElement => Bir elemanın bağlı olduğu düğümü döndürür. (Kapsayıcısı).
+      //     result = document.getElementById("title").parentElement;
+
+      //     // nextElementSibling | previousElementSibling => Elemanın hizasında yer alan elemanlar arasında gezinmemizi sağlar.
+      //     result = document.querySelector(".task").nextElementSibling;
+      //     // querySelector(".task").nextElementSibling.nextElementSibling.previousElementSibling;
+      //     // Bu şekilde arka arkaya kullanımı da mevcuttur.
+
+      //
+    </script>
+  </body>
+</html>
