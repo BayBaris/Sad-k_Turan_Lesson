@@ -1,3 +1,4 @@
+// DOM Elements
 const wordElement = document.getElementById("word");
 const popup = document.getElementById("popup-container");
 const message = document.getElementById("message-success");
@@ -6,38 +7,27 @@ const items = document.querySelectorAll(".item");
 const messageElement = document.getElementById("message");
 const againButton = document.getElementById("play-again");
 
+//Letters and Words
+const correctLetters = [];
+const wrongLetters = [];
+let selectedWord = getRandomWord();
+
 function getRandomWord() {
   const words = ["java", "javascript", "python"];
 
   return words[Math.floor(Math.random() * words.length)];
 }
 
-const correctLetters = [];
-const wrongLetters = [];
-let selectedWord = getRandomWord();
-
 function displayWord() {
   wordElement.innerHTML = `
-    ${selectedWord
-      .split("")
-      .map(
-        (letter) =>
+    ${selectedWord.split("").map((letter) =>
           `
             <div class="letter">
                 ${correctLetters.includes(letter) ? letter : ""}
             </div>
         `
-      )
-      .join("")}`;
+      ).join("")}`;
 
-  /**
-   * /\n/g ifadesi düzenli ifadeler (regular expressions) kullanılarak yazılmış bir modeldir.
-   * Bu tür ifadeler metin içindeki belirli desenleri tanımlamak, eşleştirmek ve manipüle etmek için kullanılır.
-   * Açıklaması:
-   * /: Düzenli ifadeyi başlatır ve bitirir.
-   * \n: Yeni satır karakterini temsil eder (line feed).
-   * g: Global bayrak; metindeki tüm eşleşmeleri bulur, sadece ilkini değil.
-   */
   const output = wordElement.innerText.replace(/\n/g, "");
   if (output === selectedWord) {
     popup.style.display = "flex";
@@ -49,8 +39,8 @@ function displayWord() {
 function updateWrongLetters() {
   wrongLettersElement.innerHTML = `
         ${wrongLetters.length > 0 ? "<h3>Wrong Letters</h3>" : ""}
-        ${wrongLetters.map(
-          (letter) => `
+        ${wrongLetters.map((letter) =>
+            `
                 <span>${letter}</span>
             `
         )}
@@ -89,10 +79,9 @@ window.addEventListener("keydown", function (e) {
         correctLetters.push(letter);
         displayWord();
       } else {
-        displayMessage(letter);
         // console.log(`You already entered ${letter} letter`);
+        displayMessage(letter);
       }
-      //   console.log(correctLetters);
     } else {
       if (!wrongLetters.includes(letter)) {
         wrongLetters.push(letter);
@@ -100,7 +89,6 @@ window.addEventListener("keydown", function (e) {
       } else {
         displayMessage(letter);
       }
-    //   console.log(wrongLetters);
     }
   }
 });
@@ -115,21 +103,15 @@ againButton.addEventListener("click", function (e) {
 
   popup.style.display = 'none';
 });
-//#endregion
-displayWord();
 
-// My Method....
-function findLetter(word, key) {
-  // 'split' ile stringi bir karakter dizisine dönüştür.
-  word.split("").forEach(function (letter) {
-    if (letter == key) {
-      correctLetters.push(letter);
-      console.log(`Correct Letter: ${letter}`);
+document.addEventListener("keypress", function(e) {
+    // If the user presses the "Enter" key on the keyboard
+    if(popup.style.display == "flex"){
+        if (e.key === "r" || e.key === "R") {
+            againButton.click();
+        }    
     }
   });
 
-  let correctWord = correctLetters.join("");
-  if (correctWord == word) {
-    console.log(correctWord);
-  }
-}
+//#endregion
+displayWord();
