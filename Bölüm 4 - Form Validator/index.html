@@ -27,7 +27,8 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="number" class="form-control" id="phone" placeholder="Enter Phone">
+                            <input type="tel" class="form-control" id="phone" pattern="" required 
+                                placeholder="" onkeydown="validate_int(event)" onkeyup="phone_number_mask()"> 
                             <div></div>
                         </div>
                         <div class="form-group">
