@@ -62,3 +62,28 @@
     color: #721c24;
     background: #f8d7da;
 }
+
+.quiz-box .option-list .option.disabled{
+    pointer-events: none;
+}
+
+.quiz-box .next-btn {
+    opacity: 0;
+    pointer-events: none;
+
+    transform: scale(0.9);
+    transition: all 0.2s ease;
+}
+
+.quiz-box .next-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+
+.quiz-box footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
