@@ -24,21 +24,46 @@ function Question(questionText, answerOptions, correctAnswer) {
       "b"
     ),
     new Question(
-      "2) Which one is a .net package management application?",
+      "2) Which method reverses an array?",
       {
-        a: "Node.js",
-        b: "Nuget",
-        c: "Npm",
+        a: "reverse",
+        b: "sort",
+        c: "shift",
+        d: "map",
       },
       "a"
     ),
+    
     new Question(
-      "3) Which one is a .net package management application?",
+      "3) What does the 'this' keyword represent?",
       {
-        a: "Node.js",
-        b: "Nuget",
-        c: "Npm",
+        a: "Global Context",
+        b: "Function Context",
+        c: "Current Object",
+        d: "Parent Object",
       },
       "c"
     ),
+    
+    new Question(
+      "4) Which one is a JavaScript loop type?",
+      {
+        a: "forEach",
+        b: "callback",
+        c: "filter",
+        d: "find",
+      },
+      "a"
+    ),
+    
+    new Question(
+      "5) What is the difference between `let` and `var`?",
+      {
+        a: "Block Scope",
+        b: "Global Scope",
+        c: "Function Scope",
+        d: "Local Scope",
+      },
+      "a"
+    )
   ];

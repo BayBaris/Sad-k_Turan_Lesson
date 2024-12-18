@@ -8,7 +8,7 @@
 }
 
 .quiz-box{
-    width: 550px;
+    width: 600px;
 
     transform: translate(-50%,-50%) scale(0.7);
     transition: all 0.3s ease;
@@ -89,6 +89,37 @@
     justify-content: space-between;
 }
 
+/* Timer */
+.quiz-box header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quiz-box header .timer{
+    display: flex;
+    align-items: center;
+    background: #143f68;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.quiz-box header .timer .time-text{
+    font-size: 14px;
+}
+
+.quiz-box header .timer .time-second{
+    background: #f0a500;
+    border-radius: 3px;
+    padding: 3px;
+    margin-left: 3px;
+    width: 30px;
+    text-align: center;
+}
+
+/*Score*/
 .score-box{
     width: 400px;
     align-items: center;
