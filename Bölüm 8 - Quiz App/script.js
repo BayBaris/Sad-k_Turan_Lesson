@@ -3,8 +3,9 @@ const quiz = new Quiz(questions);
 const ui = new UI();
 
 ui.btnStart.addEventListener("click", function () {
-  ui.quizBox.classList.add("active");
-  startTimer(10);
+    startTimer(10);
+    startTimerLine();
+    ui.quizBox.classList.add("active");
   ui.showQuestion(quiz.getQuestion());
   ui.showQuestionNumber(quiz.questionIndex + 1, quiz.questions.length);
   ui.btnNext.classList.remove("show");
@@ -14,7 +15,10 @@ ui.btnNext.addEventListener("click", function () {
   if (quiz.questions.length != quiz.questionIndex + 1) {
     quiz.questionIndex += 1;
     clearInterval(counter);
+    clearInterval(counterLine);
     startTimer(10);
+    startTimerLine();
+
     ui.showQuestion(quiz.getQuestion());
     ui.showQuestionNumber(quiz.questionIndex + 1, quiz.questions.length);
 
@@ -37,11 +41,14 @@ ui.btnReplay.addEventListener("click", function () {
   ui.btnStart.click();
   ui.scoreBox.classList.remove("active");
   clearInterval(counter);
+  clearInterval(counterLine);
   startTimer(10);
+  startTimerLine();
 });
 
 function optionSelected(option) {
   clearInterval(counter);
+  clearInterval(counterLine);
   let answer = option.querySelector("span b").textContent;
   let que = quiz.getQuestion();
 
@@ -89,4 +96,18 @@ function startTimer(second) {
       ui.btnNext.classList.add("show");
     }
   }
+}
+let counterLine;
+function startTimerLine(){
+    let lineWidth = 0;
+
+    counterLine = setInterval(timer, 20);
+
+    function timer(){
+        lineWidth += 1;
+        ui.timeLine.style.width = lineWidth + "px";
+
+        if(lineWidth > 549)
+            clearInterval(counterLine)
+    }
 }

@@ -8,7 +8,7 @@
 }
 
 .quiz-box{
-    width: 600px;
+    width: 550px;
 
     transform: translate(-50%,-50%) scale(0.7);
     transition: all 0.3s ease;
@@ -94,6 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .quiz-box header .timer{
@@ -117,6 +118,15 @@
     margin-left: 3px;
     width: 30px;
     text-align: center;
+}
+
+.quiz-box header .time-line{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    /* width: 599px; */
+    background: #f0a500;
 }
 
 /*Score*/
