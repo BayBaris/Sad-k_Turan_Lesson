@@ -19,7 +19,7 @@ function Question(questionText, answerOptions, correctAnswer) {
         a: "Node.js",
         b: "Nuget",
         c: "Npm",
-        d: "Nuget",
+        d: "Angular",
       },
       "b"
     ),
