@@ -5,37 +5,16 @@ function Question(questionText, answerOptions, correctAnswer) {
     this.checkAnswer = function (answer) {
         return answer === this.correctAnswer
     }
-
-    console.log(this)
+    // console.log(this)
 }
 
 Question.prototype.checkAnswer2 = function (answer) {
     return answer === this.correctAnswer
 }
 
-let que1 = new Question(
-    "Which one is a javascript package management application?",
-    {
-        a: "Node.js",
-        b: "Typescript",
-        c: "Npm",
-    },
-    "c"
-);
-
-let que2 = new Question(
-    "Which one is a .net package management application?",
-    {
-        a: "Node.js",
-        b: "Nuget",
-        c: "Npm",
-    },
-    "b"
-);
-
 let questions = [
     new Question(
-        "Which one is a .net package management application?",
+        "1) Which one is a .net package management application?",
         {
             a: "Node.js",
             b: "Nuget",
@@ -44,7 +23,7 @@ let questions = [
         "b"
     ),
     new Question(
-        "Which one is a .net package management application?",
+        "2) Which one is a .net package management application?",
         {
             a: "Node.js",
             b: "Nuget",
@@ -53,7 +32,7 @@ let questions = [
         "a"
     ),
     new Question(
-        "Which one is a .net package management application?",
+        "3) Which one is a .net package management application?",
         {
             a: "Node.js",
             b: "Nuget",
@@ -62,10 +41,28 @@ let questions = [
         "c"
     ),
 ];
-// console.log(que1.correctAnswer);
 
-// for (let que of questions) {
-//     console.log(que.correctAnswer);
-// }
+function Quiz(questions){
+    this.questions = questions;
+    this.questionIndex = 0;
+}
 
-// console.log(questions[0].checkAnswer("c"));
+
+Quiz.prototype.getQuestion = function(){
+    return this.questions[this.questionIndex];
+}
+
+const quiz = new Quiz(questions);
+const quizBox = document.querySelector(".quiz-box");
+
+document.querySelector(".btn-start").addEventListener("click",function(){
+    if(quiz.questions.length != quiz.questionIndex){
+        console.log(quiz.getQuestion());
+        quizBox.classList.add("active");
+
+        quiz.questionIndex += 1;
+    }
+    else{
+        console.log("Quiz Bitti")
+    }
+});
