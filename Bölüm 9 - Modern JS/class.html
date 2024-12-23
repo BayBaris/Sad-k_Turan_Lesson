@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        function PersonES5(fName, lName, birthDate) {
+            this.fName = fName
+            this.lName = lName
+            this.birthDate = birthDate
+        }
+
+        PersonES5.prototype.calcAge = function () {
+            let tarih = new Date().getFullYear();
+            return tarih - this.birthDate;
+        }
+
+        let baris = new PersonES5("Barış", "Karakaya", 2000);
+        let atakan = new PersonES5("Atakan Kutay", "Soydan", 2000);
+
+        console.log(baris.calcAge());
+
+        // Nesne tanımlandığı andan itibaren constructor çalışır.
+        class PersonES6 {
+            constructor(fName, lName, birthDate) {
+                this.fName = fName
+                this.lName = lName
+                this.birthDate = birthDate
+                console.log("Kişi Oluşturuldu!");
+            }
+
+            calcAge() {
+                let tarih = new Date().getFullYear();
+                return tarih - this.birthDate;
+            }
+        }
+
+
+        let umut = new PersonES6("Umut Can", "Karaoğlan", 2002);
+        let selenay = new PersonES6("Selenay", "Muğlalı", 2001);
+        // let ayse = new PersonES6();
+
+        console.log(selenay);
+        console.log(umut.calcAge());
+
+    </script>
+</body>
+
+</html>
