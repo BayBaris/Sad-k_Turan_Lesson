@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const numbers = [1,2,3,4,5,7];
+        const oddNumCheck = (num) => num % 2 == 1;
+        //Dizideki her elemanı fonksiyona yollar ve true dönen değerleri bir array olarak tutar.
+        // const oddNumbers = numbers.filter(oddNumCheck);
+        const oddNumbers = numbers.map((num) => num % 2 == 1);
+
+        console.log(oddNumbers);
+
+        // Objecler ile
+
+        const products = [
+            {productName : "Iphone 11", price : 11500},
+            {productName : "Iphone 12", price : 14000},
+            {productName : "Iphone 13", price : 16000},
+            {productName : "Iphone 14", price : 22000}
+        ]
+
+        // Ürünlerin ürün fiyatlarının bir liste olarak döndürür.
+        // const result = products.map(product => product.price);
+        // Fiyatı 14000'den fazla olan ürünleri filtreleyip bir liste olarak döndürdük.
+        const filtered = products.filter(products => products.price > 14000);
+        // Filterenmiş ürünlerin isimlerini map ile bir liste olarak geri döndürdük.
+        const result = filtered.map(products => products.productName);
+        console.log("== 2 Satır==\n" + result);
+
+        // Tek satırda da halledilebilir.
+        const filteredPrice = products.filter(products => products.price > 14000).map(products => products.productName);
+        console.log("== Tek Satır==\n" + filteredPrice);
+
+        // Bulduğu ilk değeri döndürür.
+        const singleProduct = products.find(products => products.price > 15000);
+        console.log("== .find() ==\n" + filteredPrice);
+
+        // Bulduğu ilk değerin index numarasını döndürür.
+        const singleProductIndex = products.findIndex(products => products.price > 15000);
+        console.log("== .finIndex==\n" + filteredPrice);
+
+    </script>
+</body>
+</html>
