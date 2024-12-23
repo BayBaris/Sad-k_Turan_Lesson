@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //ES5
+        function greeting1() {
+            console.log("Hii!");
+        }
+
+        var greetingES5 = function () {
+            console.log("hiii");
+        }
+
+        greetingES5();
+
+        //ES6
+        const greetingES6 = (name) => { console.log(`Hi ${name}`) }
+        greetingES6("Barış");
+
+
+        //ES5
+        var sum = function (a, b) {
+            return a + b;
+        }
+        sum(3, 5);
+
+
+        //ES6
+        const sum2 = (a, b) => a + b; // tek satırlı yazımda return yazmamıza gerek yok.
+        sum2(3, 12);
+
+        const sum3 = (a, b) => { return a + b };
+
+        let sums = sum3(10, 12)
+        console.log(sums);  
+    </script>
+</body>
+
+</html>
