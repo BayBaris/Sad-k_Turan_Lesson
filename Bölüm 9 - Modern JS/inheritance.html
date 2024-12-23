@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+
+    <script>
+
+        //Kişi, öğrenci, öğretmen
+
+        // Parent Class
+        class Person{
+            constructor(name, birthDate){
+                console.log("PERSON!");
+                this.name = name
+                this.birthDate = birthDate
+            }
+
+            calculateAge(){
+                let dateNow = new Date().getFullYear();
+                return dateNow - this.birthDate;
+            }
+
+            explainYourself(){
+                return `My name is ${this.name}`;
+            }
+        }
+        // Child Class
+        class Student extends Person{
+            constructor(name, birthDate, schoolNumber){
+                console.log("STUDENT!");
+                super(name, birthDate);
+                this.schoolNumber = schoolNumber;
+            }
+
+            studyLesson(){
+                console.log(`${this.name} is studying right now!`);
+            }
+
+            explainYourself(){
+                return `My name is ${this.name} and my school number is ${this.schoolNumber}`;
+            }
+        }
+
+        class Teacher extends Person{
+            constructor(name, birthDate, branch){
+                console.log("TEACHER!");
+                super(name, birthDate);
+                this.branch = branch;
+            }
+
+           teachLesson(){
+                console.log(`${this.name} is teaching right now!`);
+            }
+
+            explainYourself(){
+                return `My name is ${this.name} and my school number is ${this.schoolNumber}`;
+            }
+        }
+
+        let person1 = new Person("Barış Karakaya", 2000);
+        let stu1 = new Student("İlayda Karakaya",2006, 2700);
+        let tch1 = new Teacher("Cennet Karakaya", 1975, "Math");
+
+        let ageStu = stu1.calculateAge();
+        let agePerson = person1.calculateAge();
+        console.log(`Student: ${ageStu} \nPerson: ${agePerson}`);
+        stu1.studyLesson();
+        tch1.teachLesson();
+        let stuExp = stu1.explainYourself();
+        let personExp = person1.explainYourself();
+
+        console.log(`${stuExp}\n${personExp}`);
+
+    </script>
+</body>
+</html>
