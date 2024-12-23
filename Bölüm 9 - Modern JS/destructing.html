@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Array Destructing
+
+        let user = ["Barış", "Karakaya", "Manisa", "Salihli"] ;
+
+        // let firstName = arr[0];
+        // let lastName = arr[1];
+
+        // let [firstName, lastName] = name;
+        let [firstName, lastName, ...address] = user;
+        console.log(firstName, lastName,address);
+
+        let product = {
+            brand : "Apple",
+            model : "Iphone",
+            price : 16000
+        }
+
+        // Objenin içerisinde olmayan bir değeri de atayabiliriz.
+        let{brand, model, price, isSold = false} = product;
+        console.log(brand, model, price, isSold);
+
+
+        function showProduct(obj) {
+            let{brand, model, price, isSold = false} = obj;
+            console.log(brand, model, price, isSold);
+
+        }
+
+        showProduct(product);
+
+    </script>
+</body>
+</html>
