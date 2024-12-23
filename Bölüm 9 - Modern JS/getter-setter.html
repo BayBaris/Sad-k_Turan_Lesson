@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter-Setter</title>
+</head>
+
+<body>
+    <script>
+        class Person{
+            constructor(fName, lName, birthDate) {
+                this.fName = fName
+                this.lName = lName
+                this.birthDate = birthDate
+            }
+
+            calcAge() {
+                let tarih = new Date().getFullYear();
+                return tarih - this.birthDate;
+            }
+
+            get fName(){
+                return this._fName
+            }
+
+            set fName(value){
+                if(value.length < 3){
+                  console.log("You need at least 3 character!");
+                  return;  
+                }
+                this._fName = value
+            }
+
+            get birthDate(){
+                return this._birthDate
+            }
+
+            set birthDate(value){
+                if(value < 1900 || value > new Date().getFullYear()){
+                    console.log("Nuh-UHH!")
+                    return;
+                }
+                this._birthDate = value
+            }
+        }
+
+
+        let umut = new Person("Umut Can", "Karaoğlan", 2002);
+        let selenay = new Person("Selenay", "Muğlalı", 2001);
+
+        console.log(umut.fName);
+        console.log(selenay.birthDate);
+
+    </script>
+</body>
+
+</html>
