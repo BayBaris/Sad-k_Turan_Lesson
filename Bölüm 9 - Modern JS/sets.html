@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Set objesi eşsiz değer tutar. Her bir eleman sadece 1 adet olabilir.
+
+        const numbers  = new Set();
+
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add("Barış");
+        numbers.add("Barış");
+
+        const arr = [...numbers];
+        console.log(`Array ${arr}`);
+        console.log(numbers);
+
+        for(let x of numbers.values()){
+            console.log(x);
+        }
+    </script>
+</body>
+</html>
