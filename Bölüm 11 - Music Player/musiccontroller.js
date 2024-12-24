@@ -7,14 +7,14 @@ class MusicController{
     }
     
     playMusic(){
-        audio.play();
-        play.classList = "fa-solid fa-pause"
         container.classList.add("playing");
+        play.querySelector("i").classList = "fa-solid fa-pause"
+        audio.play();
     }
     
     pauseMusic(){
         container.classList.remove("playing");
-        play.classList = "fa-solid fa-play"
+        play.querySelector("i").classList = "fa-solid fa-play"
         audio.pause();
     }
     
