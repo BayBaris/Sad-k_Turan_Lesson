@@ -51,6 +51,45 @@ class UI {
     }, 2000);
   }
 }
+
+class Storage{
+
+    static getCourses(){
+        let courses;
+
+        if(localStorage.getItem('courses') === null){
+            courses = []
+        }
+        else{
+            courses = JSON.parse(localStorage.getItem('courses'))
+        }
+
+        return courses
+    }
+
+    static displayCourses(){
+        const courses = Storage.getCourses();
+
+        courses.forEach(course => {
+            const ui = new UI();
+            ui.addCourseToList(course);
+        });
+    }
+
+    static addCourse(course){
+        const courses = Storage.getCourses();
+        courses.push(course);
+        localStorage.setItem('courses', JSON.stringify(courses))
+    }
+
+    static deleteCourse(){
+
+    }
+}
+
+document.addEventListener("DOMContentLoaded", Storage.displayCourses);
+
+
 const ui = new UI();
 document.getElementById("new-course").addEventListener("submit", function(e){
     
@@ -68,6 +107,9 @@ document.getElementById("new-course").addEventListener("submit", function(e){
         // Add to course list
         ui.addCourseToList(course);
         
+        // Save to LocalStorage
+        Storage.addCourse(course);
+
         // Clear controls
         ui.clearControls();
 
@@ -79,6 +121,7 @@ document.getElementById("new-course").addEventListener("submit", function(e){
 
 document.getElementById("course-list").addEventListener("click", function(e){
     ui.deleteCourse(e.target)
+    Storage.deleteCourse();
     ui.showAlert("You deleted one course", "danger")
     console.log(e.target);
 
