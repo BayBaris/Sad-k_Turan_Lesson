@@ -35,6 +35,23 @@ UI.prototype.deleteCourse = function(element){
     }
 }
 
+UI.prototype.showAlert = function(message, messageType){
+    var alert = `
+        <div class="alert alert-${messageType}">
+            ${message}    
+        </div>
+    `;
+
+    const row = document.querySelector(".row");
+    
+    // beforebegin, afterbegin, beforeend, afterend
+    row.insertAdjacentHTML("beforebegin",alert);
+
+    setTimeout(()=>{
+        document.querySelector(".alert").remove();
+    },2000)
+}
+
 
 document.getElementById("new-course").addEventListener("submit", function(e){
     
@@ -47,19 +64,28 @@ document.getElementById("new-course").addEventListener("submit", function(e){
 
     // Create UI
     const ui = new UI();
-    ui.addCourseToList(course);
+    
 
-    // Add to course list
+    if(title === "" || instructor === "" || image === ""){
+        ui.showAlert("Please complete form!", "warning");
+    }
+    else{
+        // Add to course list
+        ui.addCourseToList(course);
+        
+        // Clear controls
+        ui.clearControls();
 
-    // Clear controls
-    ui.clearControls();
-    console.log(course);
+        ui.showAlert("Course has been added!", "success")
+    }
+    
     e.preventDefault();
 });
 
 document.getElementById("course-list").addEventListener("click", function(e){
     const ui = new UI();
     ui.deleteCourse(e.target)
+    ui.showAlert("You deleted one course", "danger")
     console.log(e.target);
 
 })
