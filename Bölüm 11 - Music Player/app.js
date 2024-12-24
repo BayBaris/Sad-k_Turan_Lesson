@@ -24,12 +24,41 @@ function displayMusic(music){
     audio.src = "mp3/" + music.file;
 }
 
-play.addEventListener("click", () => {
+function playMusic() {
     audio.play();
-})
+    play.classList = "fa-solid fa-pause"
+    container.classList.add("playing");
+}
 
-next.addEventListener("click", () =>{
+function pauseMusic() {
+    container.classList.remove("playing");
+    play.classList = "fa-solid fa-play"
+    audio.pause();
+}
+
+function prevMusic(){
+    player.prev();
+    let music = player.getMusic();
+    displayMusic(music);
+    playMusic();
+}
+
+function nextMusic(){
     player.next();
     let music = player.getMusic();
     displayMusic(music);
+    playMusic();
+}
+
+play.addEventListener("click", () => {
+    const isMusicPlay = container.classList.contains("playing")
+    isMusicPlay ? pauseMusic() : playMusic()
+})
+
+prev.addEventListener("click", () => {
+    prevMusic();
+})
+
+next.addEventListener("click", () =>{
+    nextMusic();
 })
