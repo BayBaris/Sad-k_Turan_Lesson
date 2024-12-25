@@ -11,6 +11,7 @@ const currentTime = document.getElementById("current-time");
 const progressBar = document.getElementById("progress-bar");
 const volume = document.getElementById("volume-icon");
 const volumeBar = document.getElementById("volume-bar");
+const ul = document.getElementById("ul-music");
 
 const player = new MusicPlayer(musicList);
 const controller = new MusicController();
@@ -18,7 +19,29 @@ const controller = new MusicController();
 window.addEventListener("load", ()=>{
     let music = player.getMusic();
     controller.displayMusic(music);
+    displayMusicList(player.musicList);
 })
+
+const displayMusicList = (musicList) => {
+    for(let i= 0; i < musicList.length;i++){
+        let tag = `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>${musicList[i].getName()}</span>
+                <span id="music-${i}" class="badge bg-danger rounded-pill"></span>
+                <audio class="music-${i}" src="mp3/${musicList[i].file}"> </audio>
+            </li> 
+        `;
+
+        ul.insertAdjacentHTML("beforeend", tag);
+
+        let liAudioDuration = document.getElementById(`music-${i}`);
+        let liAudioTag = document.querySelector(`.music-${i}`);
+
+        liAudioTag.addEventListener("loadeddata", () =>{
+            liAudioDuration.innerText = calculateTime(liAudioTag.duration);
+        })
+    }
+}
 
 const calculateTime = (duration) => {
     const minute = Math.floor(duration / 60);
@@ -40,7 +63,6 @@ prev.addEventListener("click", () => {controller.prevMusic();})
 next.addEventListener("click", () =>{controller.nextMusic();})
 
 audio.addEventListener("loadedmetadata",()=>{
-    console.log(audio.duration);
     duration.textContent = calculateTime(audio.duration);
     progressBar.max = Math.floor(audio.duration);
 })
