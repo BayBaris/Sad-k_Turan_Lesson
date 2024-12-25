@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    
+    <script>
+        // console.log("start");
+
+        // const serverStatus = false;
+
+        // const login = (username, password, successFn, errorFn) =>{
+        //     setTimeout( () => {
+        //         if(serverStatus){
+        //             successFn({username: username, email: "baybarisk@outlook.com"});
+        //         }
+        //         else{
+        //             errorFn("Server Closed!")
+        //         }
+        //     },1000)
+        // }
+
+        // const getPostsByUsername = (username, successFn) => {
+        //     setTimeout(()=>{
+        //         successFn(["post 1", "post 2", "post3"]);
+        //     },2000)
+        // }
+
+        // const error = (msg) => {
+        //     console.log(msg);
+        // }
+
+        // getPostDetails = (post, successFn) => {
+        //     setTimeout(() => {
+        //         successFn("Post Details");
+        //     },1000)
+        // }
+        // login("baybaris", "12345", user => {
+        //     getPostsByUsername(user.username,(posts) => {
+        //         console.log(posts);
+
+        //         getPostDetails(posts[0], (details) => {
+        //             console.log(details);
+        //         })
+        //     })
+        // },error);
+        // console.log("end")
+
+
+        const serverStatus = false;
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if(serverStatus){
+                    resolve({username: "baybarisk"});
+                }
+                else{
+                    reject("Login Error!")
+                }
+            })
+        },1000);
+
+        //.then() ile başarılı dönen sonucu çalıştırırken catch ile başarısız dönen sonucu yakalayıp çalıştırıyoruz.
+        promise.then(user => {
+            console.log(user);
+        }).catch(err => {
+            console.log(err);
+        })
+
+    </script>
+</body>
+</html>

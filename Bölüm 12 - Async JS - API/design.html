@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        .col-2 img{
+            height: 120px;
+        }
+    </style>
+    <title>CALLBACK DEMO</title>
+</head>
+<body>
+
+
+    <div class="container my-5">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" id="txtSearch" class="form-control" placeholder="Enter Country">
+                    <button type="button" id="btnSearch" class="btn btn-warning">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3" id="country-details">
+            <!-- <div class="card-header">Result</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="https://mainfacts.com/media/images/coats_of_arms/tr.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-8">
+                        <h3 class="card-title">Türkiye</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">Nüfus: </div>
+                            <div class="col-8">84M</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Resmi Dil: </div>
+                            <div class="col-8">Türkçe</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Başkent: </div>
+                            <div class="col-8">Ankara</div>
+                        </div>  
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">Neighbour Countries</div>
+            <div class="card-body">
+                <div class="row" id="neighbour"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- xml, json  -->
+    <script>
+
+        const capitalize = (str) => {
+            if (typeof str !== "string") return "";
+            return str
+                .split(" ") // Metni boşluklara göre ayır
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Her kelimenin ilk harfini büyüt
+                .join(" "); // Kelimeleri tekrar birleştir
+        }
+        const getCountry = (country) => {
+            const request = new XMLHttpRequest();
+
+            // GET ile verilen URL dosyasını XMLHttpRequest nesnesi ile açıyoruz.
+            request.open("GET",`https://restcountries.com/v3.1/name/${country}`);
+            request.send();
+
+            // Veriler bize string olarak gelir.
+            request.addEventListener("load",function(){
+                //string to JSON.
+                const data = JSON.parse(this.responseText) ;
+                console.log(data);
+                renderCountry(data[0])
+                
+                //Veriler diziden çıkarılıp string halde tutulur.
+                const borderCountries = data[0].borders.toString();
+                console.log(borderCountries);
+
+                // Komşuların getirilmesi için bir tane daha XMLHttpRequest nesnesi oluşturuyoruz.
+                const req = new XMLHttpRequest();
+                req.open("GET", `https://restcountries.com/v3.1/alpha?codes=${borderCountries}`);
+                req.send();
+
+                req.addEventListener("load", function(){
+                    const data = JSON.parse(this.responseText);
+                    renderNeighbour(data);
+                })
+            })
+        }
+
+        const renderCountry = (data) => {
+           let html = ` 
+           <div class="card-header">Result</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="${data.flags.png}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-8">
+                        <h3 class="card-title">${data.name.common}</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">Population: </div>
+                            <div class="col-8">${(data.population / 1000000).toFixed(1)} Million</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Mother Language: </div>
+                            <div class="col-8">${Object.values(data.languages)}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Capital: </div>
+                            <div class="col-8">${data.capital[0]}</div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-4">Currency: </div>
+                            <div class="col-8">${capitalize(Object.values(data.currencies)[0].name)} (${Object.values(data.currencies)[0].symbol})</div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+           `;
+           document.getElementById("country-details").insertAdjacentHTML("beforeend", html);
+
+                // const html = `
+                // <div class="col-3">
+                //     <div class="card h-100">
+                //             <img src="${country.flags.png}" class="card-img-top">
+                //             <div class="card-body">
+                //                 <h5 class="card-title">${country.name.common}</h5>
+                //                 </div>
+                //             <ul class="list-group list-group-flash">
+                //                 <li class="list-group-item">${(country.population / 1000000).toFixed(1)} M</li>
+                //                 <li class="list-group-item">${country.capital[0]}</li>
+                //                 <li class="list-group-item">${Object.values(country.languages)}</li>
+                //                 </ul>
+                //         </div>
+                //     </div> 
+                // `;
+                // document.querySelector(".container .row").insertAdjacentHTML("beforeend", html);
+            
+        }
+
+        const renderNeighbour = (data) =>{
+            let html = "";
+            for(let country of data){
+                html += `
+                    <div class="col-2 mt-2">
+                        <div class="card">
+                             <img src="${country.flags.png}" class="card-img-top">
+                             <div class="card-body">
+                                <h5 class="card-title">${country.name.common}</h5>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById("neighbour").innerHTML = html;
+
+        }
+        document.getElementById("btnSearch").addEventListener("click", () => {
+            let text = document.getElementById("txtSearch").value;
+            getCountry(text);
+        })
+    </script>
+</body>
+</html>
