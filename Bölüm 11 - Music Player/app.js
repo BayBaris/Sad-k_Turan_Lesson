@@ -20,14 +20,15 @@ window.addEventListener("load", ()=>{
     let music = player.getMusic();
     controller.displayMusic(music);
     displayMusicList(player.musicList);
+    isPlayingNow();
 })
 
 const displayMusicList = (musicList) => {
     for(let i= 0; i < musicList.length;i++){
         let tag = `
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li li-index="${i}" onclick="selectedMusic(this)" class="list-group-item d-flex justify-content-between align-items-center">
                 <span>${musicList[i].getName()}</span>
-                <span id="music-${i}" class="badge bg-danger rounded-pill"></span>
+                <span id="music-${i}" class="badge rounded-pill text-bg-danger"></span>
                 <audio class="music-${i}" src="mp3/${musicList[i].file}"> </audio>
             </li> 
         `;
@@ -47,10 +48,27 @@ const calculateTime = (duration) => {
     const minute = Math.floor(duration / 60);
     const second = Math.floor(duration % 60);
     const updatedSecond = second < 10 ? `0${second}` : `${second}`
-    const time = `
-        ${minute}:${updatedSecond} 
-    `;
+    const time = `${minute}:${updatedSecond}`;
     return time;
+}
+
+const selectedMusic = (li) =>{
+    player.index = li.getAttribute("li-index");
+    controller.displayMusic(player.getMusic());
+    controller.playMusic();
+    isPlayingNow();
+}
+
+const isPlayingNow = () => {
+    for(let li of ul.querySelectorAll("li")){
+        if(li.classList.contains("playing")){
+            li.classList.remove("playing");
+        }
+
+        if(li.getAttribute("li-index") == player.index){
+            li.classList.add("playing");
+        }
+    }
 }
 
 play.addEventListener("click", () => {
@@ -107,4 +125,8 @@ volumeBar.addEventListener("input", (e)=>{
         muteState = "unmuted";
         volume.classList = "fa-solid fa-volume-high";
     }
+})
+
+audio.addEventListener("ended",()=>{
+    controller.nextMusic();
 })

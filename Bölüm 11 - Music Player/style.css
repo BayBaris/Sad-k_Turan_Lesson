@@ -21,3 +21,13 @@ body{
 .volume-container i{
     margin-right: 5px;
 }
+
+.list-group-item:hover {
+    background-color: #f15f6e;
+}
+
+li.playing{
+    background: #b32735;
+    color: #fff;
+}
+

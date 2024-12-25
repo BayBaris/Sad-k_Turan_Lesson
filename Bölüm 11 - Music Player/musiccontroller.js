@@ -8,14 +8,14 @@ class MusicController{
     
     playMusic(){
         container.classList.add("playing");
-        play.querySelector("i").classList = "fa-solid fa-pause"
         audio.play();
+        play.querySelector("i").classList = "fa-solid fa-pause"
     }
     
     pauseMusic(){
         container.classList.remove("playing");
-        play.querySelector("i").classList = "fa-solid fa-play"
         audio.pause();
+        play.querySelector("i").classList = "fa-solid fa-play"
     }
     
     prevMusic(){
@@ -23,6 +23,8 @@ class MusicController{
         let music = player.getMusic();
         this.displayMusic(music);
         this.playMusic();
+        isPlayingNow();
+
     }
     
     nextMusic(){
@@ -30,5 +32,7 @@ class MusicController{
         let music = player.getMusic();
         this.displayMusic(music);
         this.playMusic();
+        isPlayingNow();
+
     }
 }
