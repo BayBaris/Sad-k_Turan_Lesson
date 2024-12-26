@@ -50,33 +50,6 @@
                 })
                 .then(response => response.json())
                 .then(data => renderNeighbour(data))
-            // const request = new XMLHttpRequest();
-
-            // // GET ile verilen URL dosyasını XMLHttpRequest nesnesi ile açıyoruz.
-            // request.open("GET",`https://restcountries.com/v3.1/name/${country}`);
-            // request.send();
-
-            // // Veriler bize string olarak gelir.
-            // request.addEventListener("load",function(){
-            //     //string to JSON.
-            //     const data = JSON.parse(this.responseText) ;
-            //     console.log(data);
-            //     renderCountry(data[0])
-                
-            //     //Veriler diziden çıkarılıp string halde tutulur.
-            //     const borderCountries = data[0].borders.toString();
-            //     console.log(borderCountries);
-
-            //     // Komşuların getirilmesi için bir tane daha XMLHttpRequest nesnesi oluşturuyoruz.
-            //     const req = new XMLHttpRequest();
-            //     req.open("GET", `https://restcountries.com/v3.1/alpha?codes=${borderCountries}`);
-            //     req.send();
-
-            //     req.addEventListener("load", function(){
-            //         const data = JSON.parse(this.responseText);
-            //         renderNeighbour(data);
-            //     })
-            // })
         }
 
         const renderCountry = (data) => {
@@ -110,25 +83,7 @@
                 </div>
             </div>
            `;
-           document.getElementById("country-details").insertAdjacentHTML("beforeend", html);
-
-                // const html = `
-                // <div class="col-3">
-                //     <div class="card h-100">
-                //             <img src="${country.flags.png}" class="card-img-top">
-                //             <div class="card-body">
-                //                 <h5 class="card-title">${country.name.common}</h5>
-                //                 </div>
-                //             <ul class="list-group list-group-flash">
-                //                 <li class="list-group-item">${(country.population / 1000000).toFixed(1)} M</li>
-                //                 <li class="list-group-item">${country.capital[0]}</li>
-                //                 <li class="list-group-item">${Object.values(country.languages)}</li>
-                //                 </ul>
-                //         </div>
-                //     </div> 
-                // `;
-                // document.querySelector(".container .row").insertAdjacentHTML("beforeend", html);
-            
+           document.getElementById("country-details").insertAdjacentHTML("beforeend", html);        
         }
 
         const renderNeighbour = (data) =>{
@@ -146,7 +101,6 @@
                 `;
             }
             document.getElementById("neighbour").innerHTML = html;
-
         }
         document.getElementById("btnSearch").addEventListener("click", () => {
             let text = document.getElementById("txtSearch").value;
