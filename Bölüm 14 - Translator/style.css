@@ -101,7 +101,7 @@ ul{
     transform: translateX(0); /* Başlangıç konumu */
 }
 
-#btn-translate:hover .btn-text {
+#btn-translate.clicked .btn-text {
     transform: translateX(calc(87%)); /* Metin sağa kayar */
 }
 

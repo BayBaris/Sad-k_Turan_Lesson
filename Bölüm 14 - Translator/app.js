@@ -8,6 +8,17 @@ const toText = document.getElementById("to-text");
 const exchange = document.querySelector(".exchange");
 
 const icons = document.querySelectorAll(".icons");
+const btnText = document.querySelector(".btn-text");
+
+
+const checkClicked = (buttonName) => {
+    if(btnTranslate.classList.contains("clicked")){
+        buttonName.textContent = "Translated";
+    }
+    else{
+        buttonName.textContent = "Translate";
+    }
+}
 
 for (let [key, value] of Object.entries(languages)) {
     let option = `<option value="${key}">${value}</option>`;
@@ -30,6 +41,14 @@ btnTranslate.addEventListener("click", () => {
         .then((data) => {
             toText.value = data.responseData.translatedText;
         });
+    
+    btnTranslate.classList.add("clicked");
+    checkClicked(btnText);
+
+    setTimeout(()=>{
+        btnTranslate.classList.remove("clicked");
+        checkClicked(btnText);
+    },2000)
 });
 
 exchange.addEventListener("click", () => {
@@ -53,12 +72,15 @@ for (let icon of icons) {
                 navigator.clipboard.writeText(toText.value);
             }
         } else {
-            let ut
+            let uttterance;
             if (elementId == "from") {
-
+                uttterance = new SpeechSynthesisUtterance(fromText.value);
+                uttterance.lang = fromLang.value;
             } else {
-
+                uttterance = new SpeechSynthesisUtterance(toText.value);
+                uttterance.lang = toLang.value;
             }
+            speechSynthesis.speak(uttterance);
         }
     });
 }
