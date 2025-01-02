@@ -13,15 +13,30 @@ body{
     background: #4028ac;
 }
 
+.header{
+    border: none;
+    background-color: #4028ac;
+    border-radius: 20px 20px 20px 6px;
+    padding: 5px;
+    margin-bottom: 3px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+}
+
 .container{
     width: 700px;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 7px 4px 15px #252525;
 }
 
 .box{
-    border-radius: 5px;
+    border-radius: 10px;
     border: #3b3d3d 1px solid;
 }
 
@@ -77,32 +92,37 @@ ul{
 #btn-translate {
     background-color: #4028ac;
     border: 2px solid #4028ac;
+    border-radius: 7px 21px;
     color: #fff;
     padding: 10px 20px;
     width: 100%;
-    margin-top: 5px;
+    margin: 5px auto;
+    margin-bottom: 0;
     font-size: 16px;
     text-align: start;
     position: relative; /* Metin hareketine göre sabit durması için */
     overflow: hidden;  /* Taşmayı engeller */
     transition: all 0.4s ease;
     cursor: pointer;
+    box-shadow: 0px 3px 7px #252525;
 }
-
-#btn-translate:hover {
+#btn-translate:hover{
     background-color: #fff;
     border: 2px solid #4028ac;
     color: black;
 }
-
 #btn-translate .btn-text {
     display: block; /* Animasyon için gerekli */
     transition: transform 0.60s ease;
     transform: translateX(0); /* Başlangıç konumu */
 }
 
+#btn-translate.responding .btn-text {
+    transform: translateX(calc(87% - 43.5%)); /* Metin sağa kayar */
+}
+
 #btn-translate.clicked .btn-text {
-    transform: translateX(calc(87%)); /* Metin sağa kayar */
+    transform: translateX(calc(78%)); /* Metin sağa kayar */
 }
 
 .exchange i{
@@ -113,4 +133,14 @@ ul{
     cursor: pointer;
     color: #4028ac;
     transform: scale(1.5);
+}
+
+select{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #4028ac;
+}
+
+select:hover{
+    cursor: pointer;
 }

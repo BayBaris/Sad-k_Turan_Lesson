@@ -11,15 +11,6 @@ const icons = document.querySelectorAll(".icons");
 const btnText = document.querySelector(".btn-text");
 
 
-const checkClicked = (buttonName) => {
-    if(btnTranslate.classList.contains("clicked")){
-        buttonName.textContent = "Translated";
-    }
-    else{
-        buttonName.textContent = "Translate";
-    }
-}
-
 for (let [key, value] of Object.entries(languages)) {
     let option = `<option value="${key}">${value}</option>`;
     fromLang.insertAdjacentHTML("beforeend", option);
@@ -36,19 +27,24 @@ btnTranslate.addEventListener("click", () => {
 
     const url = `https://api.mymemory.translated.net/get?q=${text}!&langpair=${fromL}|${toL}`;
 
+    btnTranslate.classList.add("responding");
+    btnText.textContent = "Translating"
+
     fetch(url)
         .then((res) => res.json())
         .then((data) => {
-            toText.value = data.responseData.translatedText;
-        });
-    
-    btnTranslate.classList.add("clicked");
-    checkClicked(btnText);
 
-    setTimeout(()=>{
-        btnTranslate.classList.remove("clicked");
-        checkClicked(btnText);
-    },2000)
+            toText.value = data.responseData.translatedText;
+            btnTranslate.classList.add("clicked");
+            btnText.textContent = "Translated"
+
+            setTimeout(() => {
+                btnTranslate.classList.remove("responding");
+                btnTranslate.classList.remove("clicked");
+                btnText.textContent = "Translate";
+            }, 1000)
+
+        });
 });
 
 exchange.addEventListener("click", () => {
