@@ -97,7 +97,7 @@ ul{
 
 #btn-translate .btn-text {
     display: block; /* Animasyon için gerekli */
-    transition: transform 0.4s ease;
+    transition: transform 0.60s ease;
     transform: translateX(0); /* Başlangıç konumu */
 }
 
@@ -105,3 +105,12 @@ ul{
     transform: translateX(calc(87%)); /* Metin sağa kayar */
 }
 
+.exchange i{
+    transition: all 0.24s ease;
+    transform: scale(1);
+}
+.exchange i:hover{
+    cursor: pointer;
+    color: #4028ac;
+    transform: scale(1.5);
+}
