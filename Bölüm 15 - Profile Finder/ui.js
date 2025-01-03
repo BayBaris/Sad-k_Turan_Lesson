@@ -40,13 +40,46 @@ class UI{
                             <li class="list-group-item">
                                 Company: ${profile.company.name}
                             </li>
-                        </ul> 
+                        </ul>
+                        <h4 class="mt-3">To Do</h4>
+                        <div class="form-check" id="todo">
+
+                        </div>
                     </div>
                 </div>
             </div>
         `
     }
 
+    showToDo(todo){
+        let html="";
+
+        todo.forEach(item => {
+            if(item.completed){
+                html+=`
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+                        <label class="form-check-label text-decoration-line-through" for="flexCheckCheckedDisabled">
+                            ${item.title}
+                        </label>
+                    </div>   
+                `
+            }
+            else{
+                html+=`
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        ${item.title}
+                    </label>
+                </div>
+                `
+            }
+        });
+
+
+        this.profileContainer.querySelector("#todo").innerHTML = html;
+    }
     showAlert(text){
         this.alert.innerHTML = `${text} is not found`;
     }

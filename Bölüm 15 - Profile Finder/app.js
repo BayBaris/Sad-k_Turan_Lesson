@@ -16,7 +16,12 @@ searchProfile.addEventListener("keyup", (event) => {
             }
             else{
                 ui.showProfile(res.profile[0]);
+                ui.showToDo(res.toDo);
             }
+        })
+        .catch(err => {
+            console.log(err);
+            ui.showAlert(text);
         })
     }
 })
