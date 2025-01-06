@@ -2,6 +2,7 @@ const UIController = (function(){
     
     const Selectors = {
         productList: "#item-list",
+        productListItem: "#item-list tr",
         btnAdd: "#btnAdd",
         btnUpdate: "#btnUpdate",
         btnDelete: "#btnDelete",
@@ -49,6 +50,19 @@ const UIController = (function(){
 
             document.querySelector(Selectors.productList).innerHTML += html;
         },
+        updateProduct : function(product){
+            let updatedItem = null;
+
+            let items = document.querySelectorAll(Selectors.productListItem);
+            items.forEach(item => {
+                if(item.classList.contains("table-warning")){
+                    item.children[1].textContent = product.name;
+                    item.children[2].textContent = `${product.price}$`;
+
+                }
+            });
+            return updatedItem
+        },
         clearInputs : function(){
             document.querySelector(Selectors.productName).value = "";
             document.querySelector(Selectors.productPrice).value = "";
@@ -65,7 +79,11 @@ const UIController = (function(){
             document.querySelector(Selectors.productName).value = selected.name;
             document.querySelector(Selectors.productPrice).value = selected.price;
         },
-        addingState : function(){
+        addingState : function(item){
+            if(item){
+                item.classList.remove("table-warning")
+            }
+
             UIController.clearInputs();
             document.querySelector(Selectors.btnAdd).style.display = "inline";
             document.querySelector(Selectors.btnUpdate).style.display = "none";

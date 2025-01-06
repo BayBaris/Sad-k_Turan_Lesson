@@ -54,6 +54,19 @@ const ProductController = (function(){
 
             return newProduct;
         },
+        updateProduct : function(name, price){
+            let _product = null;
+            
+            data.products.forEach((product)=>{
+                if(product.id == data.selectedProduct.id){
+                    product.name = name;
+                    product.price = parseFloat(price);
+                    _product = product;
+                }
+            })
+
+            return _product;
+        },
         getTotal : function(){
             let total = 0;
 
