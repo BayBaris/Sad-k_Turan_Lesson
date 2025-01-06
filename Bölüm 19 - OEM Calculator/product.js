@@ -22,6 +22,16 @@ const ProductController = (function(){
             return data;
         },
 
+        getProductByID : function(id){
+            let _product = null;
+
+            data.products.forEach(product => {
+                if(product.id == id) _product = product;
+            });
+
+            return _product;
+        },
+
         addProduct : function(name, price){
             let id;
             

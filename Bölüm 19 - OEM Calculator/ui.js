@@ -21,8 +21,7 @@ const UIController = (function(){
                     <td>${product.name}</td>
                     <td>${product.price}$</td>
                     <td class="text-end">
-                        <button type="submit" class="btn btn-warning btn-sm"><i class="far fa-edit"></i>
-                        </button>
+                        <i class="far fa-edit edit-product"></i>
                     </td>
                 </tr>
                 `;
@@ -41,8 +40,7 @@ const UIController = (function(){
                     <td>${product.name}</td>
                     <td>${product.price.toFixed(2)}$</td>
                     <td class="text-end">
-                        <button type="submit" class="btn btn-warning btn-sm"><i class="far fa-edit"></i>
-                        </button>
+                        <i class="far fa-edit edit-product"></i>
                     </td>
                 </tr>
                 `;

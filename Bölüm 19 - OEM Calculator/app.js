@@ -13,7 +13,11 @@ const AppController = (function(ProductCtrl, UICtrl){
     // Load Event Listeners...
     
     const loadEventListeners = function(){
-        document.querySelector(UISelectors.btnAdd).addEventListener("click", productAddSubmit)
+        // Add Product Event
+        document.querySelector(UISelectors.btnAdd).addEventListener("click", productAddSubmit);
+
+        // Edit Product Event
+        document.querySelector(UISelectors.productList).addEventListener("click", productEditSubmit);
     };
 
     const productAddSubmit = function(e){
@@ -37,8 +41,22 @@ const AppController = (function(ProductCtrl, UICtrl){
 
         console.log(productName, productPrice)
         e.preventDefault();
-    }
+    };
+    const productEditSubmit = function(e){
+        
+        if(e.target.classList.contains("edit-product")){
+            // console.log(e.target.parentNode.parentNode.children[0].textContent);
+            const id = e.target.parentNode.parentNode.children[0].textContent;
+            // Get Selected Product
 
+            const product = ProductCtrl.getProductByID(id);
+            console.log(product);
+            
+        }
+        
+        
+        e.preventDefault();
+    };
     return {
         init: function(){
             console.log("App Starting...");
