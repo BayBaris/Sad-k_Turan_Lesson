@@ -32,11 +32,20 @@ const ProductController = (function(){
                 id = 0;
             }
             
-            const newProduct = new Product(id, name, parseFloat(price).toFixed(2));
+            const newProduct = new Product(id, name, parseFloat(price));
             data.products.push(newProduct);
 
             return newProduct;
-            
+        },
+        getTotal : function(){
+            let total = 0;
+
+            data.products.forEach((item) => {
+                total += item.price;
+            })
+
+            data.totalPrice = total;
+            return data.totalPrice;
         }
     }
     

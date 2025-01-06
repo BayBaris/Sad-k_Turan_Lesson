@@ -22,11 +22,17 @@ const AppController = (function(ProductCtrl, UICtrl){
         const productPrice = document.querySelector(UISelectors.productPrice).value;
 
         if(productName !== "" && productPrice !== ""){
-            //Add Product
+            //Add New Product...
             const newProduct =  ProductCtrl.addProduct(productName, productPrice);
-            // console.log(newProduct);
+            //Add Product to List...
             UICtrl.addProduct(newProduct);
+            //Clear All Inputs...
             UICtrl.clearInputs();
+            //Get Total Price...
+            const total = ProductCtrl.getTotal();
+            console.log(total);
+            //Show Total on UI...
+            UICtrl.showTotal(total);
         }
 
         console.log(productName, productPrice)
@@ -36,8 +42,9 @@ const AppController = (function(ProductCtrl, UICtrl){
     return {
         init: function(){
             console.log("App Starting...");
+            
             const products = ProductCtrl.getProducts();
-
+            
             (products.length === 0) ? UICtrl.hideCard() : UICtrl.createProductList(products);
 
             //Initializing event loading section.

@@ -6,7 +6,9 @@ const UIController = (function(){
         btnAdd: "#btnAdd",
         productName: "#productName",
         productPrice: "#productPrice",
-        productCard : "#productCard"
+        productCard : "#productCard",
+        totalTL : "#total-tl",
+        totalDollar : "#total-dolar"
     }
     return{
         createProductList : function(products){
@@ -37,7 +39,7 @@ const UIController = (function(){
                 <tr>
                     <td>${product.id}</td>
                     <td>${product.name}</td>
-                    <td>${product.price}$</td>
+                    <td>${product.price.toFixed(2)}$</td>
                     <td class="text-end">
                         <button type="submit" class="btn btn-warning btn-sm"><i class="far fa-edit"></i>
                         </button>
@@ -53,6 +55,10 @@ const UIController = (function(){
         },
         hideCard : function(){
             document.querySelector(Selectors.productCard).style.display = "none";
+        },
+        showTotal : function(total){
+            document.querySelector(Selectors.totalDollar).textContent = total;
+            document.querySelector(Selectors.totalTL).textContent = (total * 35.3).toFixed(2);
         }
     }
 })();
