@@ -1,9 +1,11 @@
-// UI Controller
 const UIController = (function(){
     
     const Selectors = {
         productList: "#item-list",
         btnAdd: "#btnAdd",
+        btnUpdate: "#btnUpdate",
+        btnDelete: "#btnDelete",
+        btnCancel: "#btnCancel",
         productName: "#productName",
         productPrice: "#productPrice",
         productCard : "#productCard",
@@ -62,6 +64,27 @@ const UIController = (function(){
             const selected = ProductController.getCurrentProduct();
             document.querySelector(Selectors.productName).value = selected.name;
             document.querySelector(Selectors.productPrice).value = selected.price;
+        },
+        addingState : function(){
+            UIController.clearInputs();
+            document.querySelector(Selectors.btnAdd).style.display = "inline";
+            document.querySelector(Selectors.btnUpdate).style.display = "none";
+            document.querySelector(Selectors.btnDelete).style.display = "none";
+            document.querySelector(Selectors.btnCancel).style.display = "none";
+        },
+        editingState : function(tr){
+
+            const parent = tr.parentNode;
+
+            for(let i = 0; i < parent.children.length; i++){
+                parent.children[i].classList.remove("table-warning");
+            }
+            tr.classList.add("table-warning");
+            
+            document.querySelector(Selectors.btnAdd).style.display = "none";
+            document.querySelector(Selectors.btnUpdate).style.display = "inline";
+            document.querySelector(Selectors.btnDelete).style.display = "inline";
+            document.querySelector(Selectors.btnCancel).style.display = "inline";
         }
     }
 })();

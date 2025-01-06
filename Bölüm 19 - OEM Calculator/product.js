@@ -1,4 +1,3 @@
-// Product Controller
 const ProductController = (function(){
     // private
     const Product = function(id,name,price){

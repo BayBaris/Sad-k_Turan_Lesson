@@ -5,7 +5,6 @@
                                         -> Created by Sadık Turan
 */
 
-// App Controller
 const AppController = (function(ProductCtrl, UICtrl){
 
     const UISelectors = UICtrl.getSelectors();
@@ -56,7 +55,7 @@ const AppController = (function(ProductCtrl, UICtrl){
 
             //Add Product to UI
             UICtrl.addProductToForm();
-            
+            UICtrl.editingState(e.target.parentNode.parentNode);
         }
         
         
@@ -66,6 +65,7 @@ const AppController = (function(ProductCtrl, UICtrl){
         init: function(){
             console.log("App Starting...");
             
+            UICtrl.addingState();
             const products = ProductCtrl.getProducts();
             
             (products.length === 0) ? UICtrl.hideCard() : UICtrl.createProductList(products);

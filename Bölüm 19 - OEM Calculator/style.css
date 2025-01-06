@@ -1,0 +1,7 @@
+i.edit-product{
+    color: #d6bc29;
+}
+
+i.edit-product:hover{
+    cursor: pointer;
+}
