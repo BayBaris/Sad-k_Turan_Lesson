@@ -47,10 +47,15 @@ const AppController = (function(ProductCtrl, UICtrl){
         if(e.target.classList.contains("edit-product")){
             // console.log(e.target.parentNode.parentNode.children[0].textContent);
             const id = e.target.parentNode.parentNode.children[0].textContent;
+            
             // Get Selected Product
-
             const product = ProductCtrl.getProductByID(id);
-            console.log(product);
+
+            // Set Current Product
+            ProductCtrl.setCurrentProduct(product);
+
+            //Add Product to UI
+            UICtrl.addProductToForm();
             
         }
         

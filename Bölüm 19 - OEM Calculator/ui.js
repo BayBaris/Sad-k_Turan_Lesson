@@ -57,6 +57,11 @@ const UIController = (function(){
         showTotal : function(total){
             document.querySelector(Selectors.totalDollar).textContent = total;
             document.querySelector(Selectors.totalTL).textContent = (total * 35.3).toFixed(2);
+        },
+        addProductToForm : function(){
+            const selected = ProductController.getCurrentProduct();
+            document.querySelector(Selectors.productName).value = selected.name;
+            document.querySelector(Selectors.productPrice).value = selected.price;
         }
     }
 })();
