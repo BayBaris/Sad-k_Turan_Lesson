@@ -1,3 +1,9 @@
+/*
+    Barış Karakaya
+    -> OEM Calculator v0.1
+    -> All Controllers in same place.
+                                        -> Created by Sadık Turan
+*/
 // Storage Controller
 const StorageController = (function(){
 
