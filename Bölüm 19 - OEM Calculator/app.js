@@ -5,7 +5,7 @@
                                         -> Created by Sadık Turan
 */
 
-const AppController = (function (ProductCtrl, UICtrl) {
+const AppController = (function (ProductCtrl, UICtrl, StorageCtrl) {
 
     const UISelectors = UICtrl.getSelectors();
 
@@ -38,6 +38,8 @@ const AppController = (function (ProductCtrl, UICtrl) {
             const newProduct = ProductCtrl.addProduct(productName, productPrice);
             //Add Product to List...
             UICtrl.addProduct(newProduct);
+            //Add Local Storage...
+            StorageCtrl.storeProduct(newProduct);
             //Clear All Inputs...
             UICtrl.clearInputs();
             //Get Total Price...
@@ -140,6 +142,6 @@ const AppController = (function (ProductCtrl, UICtrl) {
         }
     }
 
-})(ProductController, UIController);
+})(ProductController, UIController, StorageController);
 
 AppController.init();
