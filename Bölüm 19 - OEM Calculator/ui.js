@@ -63,6 +63,15 @@ const UIController = (function(){
             });
             return updatedItem
         },
+        deleteProduct : function(){
+            let items = document.querySelectorAll(Selectors.productListItem);
+            items.forEach(item => {
+                if(item.classList.contains("table-warning")){
+                    item.remove();
+                }
+            });
+
+        },
         clearInputs : function(){
             document.querySelector(Selectors.productName).value = "";
             document.querySelector(Selectors.productPrice).value = "";
@@ -87,10 +96,7 @@ const UIController = (function(){
             document.querySelector(Selectors.productName).value = selected.name;
             document.querySelector(Selectors.productPrice).value = selected.price;
         },
-        addingState : function(item){
-            if(item){
-                item.classList.remove("table-warning")
-            }
+        addingState : function(){
             UIController.clearWarnings();
             UIController.clearInputs();
             document.querySelector(Selectors.btnAdd).style.display = "inline";

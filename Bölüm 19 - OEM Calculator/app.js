@@ -22,7 +22,10 @@ const AppController = (function (ProductCtrl, UICtrl) {
         document.querySelector(UISelectors.btnUpdate).addEventListener("click", productEditSubmit);
 
         // Cancel Click
-        document.querySelector(UISelectors.btnCancel).addEventListener("click", cancelUpdate)
+        document.querySelector(UISelectors.btnCancel).addEventListener("click", cancelUpdate);
+
+        // Delete Product Event
+        document.querySelector(UISelectors.btnDelete).addEventListener("click", productDeleteSubmit); 
     };
 
     const productAddSubmit = function (e) {
@@ -60,12 +63,14 @@ const AppController = (function (ProductCtrl, UICtrl) {
             // Set Current Product
             ProductCtrl.setCurrentProduct(product);
 
+            // Clear Warning Classes
+            UICtrl.clearWarnings();
+
             //Add Product to UI
             UICtrl.addProductToForm();
             UICtrl.editingState(e.target.parentNode.parentNode);
 
         }
-
 
         e.preventDefault();
     };
@@ -87,7 +92,32 @@ const AppController = (function (ProductCtrl, UICtrl) {
             UICtrl.showTotal(total);
 
             UICtrl.addingState();
+
         }
+        e.preventDefault();
+    }
+    const productDeleteSubmit = function(e){
+        
+        // Get Selected Product
+        const selectedProduct = ProductCtrl.getCurrentProduct();
+
+        // Delete Product
+        ProductCtrl.deleteProduct(selectedProduct);
+
+        // Delete UI
+        UICtrl.deleteProduct();
+
+        //Get Total Price...
+        const total = ProductCtrl.getTotal();
+        //Show Total on UI...
+        UICtrl.showTotal(total);
+
+        UICtrl.addingState();
+        
+        if(total == 0){
+            UICtrl.hideCard();
+        }
+
         e.preventDefault();
     }
     const cancelUpdate = function(e){

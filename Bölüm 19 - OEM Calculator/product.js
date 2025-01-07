@@ -22,13 +22,13 @@ const ProductController = (function(){
         },
 
         getProductByID : function(id){
-            let _product = null;
+            let product = null;
 
-            data.products.forEach(product => {
-                if(product.id == id) _product = product;
+            data.products.forEach(prd => {
+                if(prd.id == id) product = prd;
             });
 
-            return _product;
+            return product;
         },
 
         setCurrentProduct : function(product){
@@ -66,6 +66,13 @@ const ProductController = (function(){
             })
 
             return _product;
+        },
+        deleteProduct : function(product){
+            data.products.forEach((prd, index) =>{
+                if(prd.id == product.id){
+                    data.products.splice(index,1);
+                }
+            })
         },
         getTotal : function(){
             let total = 0;
