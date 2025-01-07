@@ -67,6 +67,14 @@ const UIController = (function(){
             document.querySelector(Selectors.productName).value = "";
             document.querySelector(Selectors.productPrice).value = "";
         },
+        clearWarnings : function(){
+            const items = document.querySelectorAll(Selectors.productListItem);
+            items.forEach(item => {
+                if(item.classList.contains("table-warning")){
+                    item.classList.remove("table-warning");
+                }
+            });
+        },
         hideCard : function(){
             document.querySelector(Selectors.productCard).style.display = "none";
         },
@@ -83,7 +91,7 @@ const UIController = (function(){
             if(item){
                 item.classList.remove("table-warning")
             }
-
+            UIController.clearWarnings();
             UIController.clearInputs();
             document.querySelector(Selectors.btnAdd).style.display = "inline";
             document.querySelector(Selectors.btnUpdate).style.display = "none";
@@ -91,12 +99,6 @@ const UIController = (function(){
             document.querySelector(Selectors.btnCancel).style.display = "none";
         },
         editingState : function(tr){
-
-            const parent = tr.parentNode;
-
-            for(let i = 0; i < parent.children.length; i++){
-                parent.children[i].classList.remove("table-warning");
-            }
             tr.classList.add("table-warning");
             
             document.querySelector(Selectors.btnAdd).style.display = "none";

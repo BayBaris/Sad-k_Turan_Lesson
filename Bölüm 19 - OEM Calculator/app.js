@@ -20,6 +20,9 @@ const AppController = (function (ProductCtrl, UICtrl) {
 
         // Edit Product Submit Event
         document.querySelector(UISelectors.btnUpdate).addEventListener("click", productEditSubmit);
+
+        // Cancel Click
+        document.querySelector(UISelectors.btnCancel).addEventListener("click", cancelUpdate)
     };
 
     const productAddSubmit = function (e) {
@@ -83,9 +86,15 @@ const AppController = (function (ProductCtrl, UICtrl) {
             //Show Total on UI...
             UICtrl.showTotal(total);
 
-            UICtrl.addingState(item);
+            UICtrl.addingState();
         }
         e.preventDefault();
+    }
+    const cancelUpdate = function(e){
+        
+        UICtrl.addingState();
+        UICtrl.clearWarnings();
+        e.preventDefault()
     }
     return {
         init: function () {
