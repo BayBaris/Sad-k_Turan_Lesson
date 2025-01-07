@@ -90,8 +90,12 @@ const AppController = (function (ProductCtrl, UICtrl, StorageCtrl) {
 
             //Get Total Price...
             const total = ProductCtrl.getTotal();
+            
             //Show Total on UI...
             UICtrl.showTotal(total);
+
+            //Update Storage
+            StorageCtrl.updateProduct(updatedProduct);
 
             UICtrl.addingState();
 
@@ -113,6 +117,9 @@ const AppController = (function (ProductCtrl, UICtrl, StorageCtrl) {
         const total = ProductCtrl.getTotal();
         //Show Total on UI...
         UICtrl.showTotal(total);
+
+        //Delete From Storage...
+        StorageCtrl.deleteProduct(selectedProduct.id);
 
         UICtrl.addingState();
         
