@@ -12,7 +12,7 @@ module.exports = {
             directory: path.join(__dirname, 'dist') // Replace 'dist' with your build folder
         },
         compress: true,
-        port: 3000 // Specify your desired port
+        port: 4000 // Specify your desired port
     },
     plugins: [
         new HTMLWebpackPlugin({
