@@ -1,16 +1,26 @@
-// api: 51d0a455ec41ceb8efe08834090a7854
-// url: https://api.themoviedb.org/3/
-// https://api.themoviedb.org/3/search/movie?api_key=51d0a455ec41ceb8efe08834090a7854&language=en-US&page=1&include_adult=false'
+//Model-View-Controller
 
+import Search from "./models/Search";
 
+const state = {};
 
+const searchController = async () => {
+    const keyword = document.getElementById("txt-keyword").value;
 
-async function getResult(keyword){
-    const apiKey = "51d0a455ec41ceb8efe08834090a7854";
-    const baseURL = "https://api.themoviedb.org/3";
+    if(keyword){
+        state.search = new Search(keyword);
 
-    const response = await fetch(`${baseURL}/search/movie?api_key=${apiKey}&page=1&query=${keyword}`)
-    const data = await response.json();
-}
+        await state.search.getResults();
 
-getResult("Ryan");
+        
+    }
+    else{
+        alert("Anahtar Kelime Girmelisiniz!")
+    }
+};
+
+document.getElementById("form-search").addEventListener("submit", function(e){
+    e.preventDefault();
+    searchController();
+    console.log("form submitted!");
+});
