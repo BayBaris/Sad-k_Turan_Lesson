@@ -1,7 +1,6 @@
-let name = "Barış Karakaya";
+// import { sum, multiple} from "./lib";
 
-const sayHello = () => {
-    console.log("Hello There!");
-}
+import * as lib from "./lib"
 
-sayHello();
+console.log(lib.sum(1,2,3,4,5,6));
+console.log(lib.multiple(2,4,6,7));
