@@ -2,11 +2,32 @@
 export const elements = {
     searchForm: document.getElementById("form-search"),
     searchInput: document.getElementById("txt-keyword"),
-    movieList: document.getElementById("movie-list"),
     movieDetails: document.getElementById("movie-details"),
     movieDetailsCard: document.getElementById("movie-details-container"),
-    movieListCard: document.getElementById("movie-list-container")
+    movieDetailsClose: document.getElementById("movie-details-close"),
+    movieList: document.getElementById("movie-list"),
+    movieListCard: document.getElementById("movie-list-container"),
+    movieListHeader : document.getElementById("movie-list-header")
 
+}
+
+export const renderLoader = parent => {
+    const loader = `
+    <div class="flexbox">
+            <div class="dot-loader"></div>
+            <div class="dot-loader dot-loader--2"></div>
+            <div class="dot-loader dot-loader--3"></div>
+        </div>
+        `;
+    parent.insertAdjacentHTML("beforebegin",loader);
+}
+
+export const clearLoader = parent => {
+    const loader = parent.previousElementSibling;
+    console.log(loader);
+    if(loader){
+        loader.parentNode.removeChild(loader);
+    }
 }
 
 export const imageSizes = {

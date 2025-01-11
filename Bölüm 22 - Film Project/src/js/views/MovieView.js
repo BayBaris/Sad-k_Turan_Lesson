@@ -10,7 +10,7 @@ export const displayMovie = (data) => {
     var genres = "";
 
     data.genres.forEach(genre => {
-        genres += `<span class="badge text-bg-primary mx-1">${genre.name}</span>`
+        genres += `<span class="badge text-bg-danger mx-1">${genre.name}</span>`
     });
 
     html+= `
@@ -31,4 +31,8 @@ export const displayMovie = (data) => {
 
     elements.movieDetailsCard.classList.remove("d-none");
     elements.movieDetails.innerHTML = html;
+}
+
+export const closeDetails = () => {
+    elements.movieDetailsCard.classList.add("d-none");
 }

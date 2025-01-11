@@ -1,7 +1,7 @@
 //Model-View-Controller
 
 import Search from "./models/Search";
-import {elements} from "./base";
+import {elements, renderLoader, clearLoader} from "./base";
 import * as srcView from "./views/SearchView";
 import * as movieView from "./views/MovieView";
 import { Movie } from "./models/Movie";
@@ -15,11 +15,16 @@ const searchController = async () => {
     if(keyword){
         state.search = new Search(keyword);
 
-        await state.search.getResults();
-
         srcView.clearInput();
         srcView.clearResult();
-        srcView.displayResults(state.search.data)
+
+        renderLoader(elements.movieListCard);
+        await state.search.getResults();
+
+        srcView.displayResults(keyword,state.search.data);
+        setTimeout(() => {
+            clearLoader(elements.movieListCard); 
+        }, 1000);
     }
     else{
         alert("Anahtar Kelime Girmelisiniz!")
@@ -38,10 +43,19 @@ const movieController = async () =>{
     const id = window.location.hash.replace("#","");
     if (id){
         state.movie = new Movie(id);
+
+        renderLoader(elements.movieDetailsCard);
+
         await state.movie.getMovie();
-        movieView.displayMovie(state.movie.data);
         movieView.backToTop();
+
+        movieView.displayMovie(state.movie.data);
+        setTimeout(() => {
+            clearLoader(elements.movieDetailsCard); 
+        }, 1000);
     }
 }
 
-window.addEventListener("hashchange", movieController)
+window.addEventListener("hashchange", movieController);
+
+elements.movieDetailsClose.addEventListener("click", movieView.closeDetails);

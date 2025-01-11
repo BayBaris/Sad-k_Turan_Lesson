@@ -8,7 +8,7 @@ export const clearResult = () => {
     elements.movieList.innerHTML = '';
 }
 
-export const displayResults = data => {
+export const displayResults = (keyword, data) => {
     data.results.forEach(movie => {
         const html = `
              <li class="mb-3">
@@ -26,7 +26,7 @@ export const displayResults = data => {
                 </div>
             </li>
         `;
-
+        elements.movieListHeader.innerHTML = `Found ${data.total_results} for <i>${keyword}</i> Research`;
         elements.movieListCard.classList.remove("d-none");
         elements.movieList.insertAdjacentHTML("beforeend", html);
     });
