@@ -34,4 +34,5 @@ elements.searchForm.addEventListener("submit", function(e){
 //Movie Controller
 
 const movie = new Movie(252291);
-
+movie.GetMovie();
+console.log(movie);
