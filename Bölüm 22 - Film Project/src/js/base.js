@@ -2,7 +2,10 @@
 export const elements = {
     searchForm: document.getElementById("form-search"),
     searchInput: document.getElementById("txt-keyword"),
-    searchResult: document.getElementById("result")
+    movieList: document.getElementById("movie-list"),
+    movieDetails: document.getElementById("movie-details"),
+    movieDetailsCard: document.getElementById("movie-details-container"),
+    movieListCard: document.getElementById("movie-list-container")
 
 }
 

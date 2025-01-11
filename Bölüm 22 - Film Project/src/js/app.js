@@ -3,6 +3,7 @@
 import Search from "./models/Search";
 import {elements} from "./base";
 import * as srcView from "./views/SearchView";
+import * as movieView from "./views/MovieView";
 import { Movie } from "./models/Movie";
 
 const state = {};
@@ -38,8 +39,8 @@ const movieController = async () =>{
     if (id){
         state.movie = new Movie(id);
         await state.movie.getMovie();
-
-        console.log(state.movie.data);
+        movieView.displayMovie(state.movie.data);
+        movieView.backToTop();
     }
 }
 

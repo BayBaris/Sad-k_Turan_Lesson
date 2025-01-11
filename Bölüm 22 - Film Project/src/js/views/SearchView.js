@@ -1,11 +1,11 @@
-import {elements} from "../base";
+import { elements } from "../base";
 
-export const clearInput = () =>{
+export const clearInput = () => {
     elements.searchInput.value = '';
 }
 
-export const clearResult = () =>{
-    elements.searchResult.innerHTML = '';
+export const clearResult = () => {
+    elements.movieList.innerHTML = '';
 }
 
 export const displayResults = data => {
@@ -27,6 +27,7 @@ export const displayResults = data => {
             </li>
         `;
 
-        elements.searchResult.insertAdjacentHTML("beforeend",html);
+        elements.movieListCard.classList.remove("d-none");
+        elements.movieList.insertAdjacentHTML("beforeend", html);
     });
 }
