@@ -5,9 +5,8 @@ export class Movie{
         this.id = id
     }
 
-    async GetMovie(){
+    async getMovie(){
         const response = await fetch(`${Config.baseURL}/movie/${this.id}?api_key=${Config.apiKey}`)
         this.data = await response.json();
-        console.log(this.data)
     }
 }

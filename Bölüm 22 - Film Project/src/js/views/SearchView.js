@@ -18,7 +18,8 @@ export const displayResults = data => {
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <h5>
-                        <span class="badge rounded-pill text-bg-warning">${movie.vote_average.toFixed(1)}</span> ${movie.title}
+                        <span class="badge rounded-pill text-bg-warning">${movie.vote_average.toFixed(1)}</span> 
+                        <a href="#${movie.id}">${movie.title}</a>
                         </h5>
                         <p>${movie.overview}</p>
                     </div>
