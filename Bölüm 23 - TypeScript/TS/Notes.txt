@@ -1,0 +1,11 @@
+I) Superset of Javascript
+    - JS dilinin geliştirilmiş ve modern dillere uygun hale getirilmiş versiyonu.
+II) Transpiler
+    - Yazılan TS kodları derlendikten sonra JS diline çevrilir. Ts çalıştıran bir ortam yok.
+III) Compile-Time Error
+    - Yazdığımız kodlardaki hataları derleme aşamasında görebiliyoruz.
+
+npm install -g typescript ile bilgisayarımıza kurulum yapıyoruz.
+
+"tsc app.ts" yazarak dosyamızı app.js formatına (ES5) çeviriyoruz.
+ 
